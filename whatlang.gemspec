@@ -5,6 +5,7 @@ require "tomlrb"
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
   spec.version       = Tomlrb.load_file("Cargo.toml")["package"]["version"]
+  spec.license       = "AGPL-3.0-or-later"
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
 
