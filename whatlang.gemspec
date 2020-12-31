@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rutie"
 
   spec.add_development_dependency "tomlrb"
+  spec.add_development_dependency "test-unit"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
