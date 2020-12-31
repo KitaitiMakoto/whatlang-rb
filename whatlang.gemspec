@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "tomlrb"
-require_relative "lib/whatlang/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
