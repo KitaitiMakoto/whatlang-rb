@@ -21,3 +21,4 @@ end
 file RUST_TARGET => RUST_SRC do
   sh "cargo build --release"
 end
+task test: RUST_TARGET
