@@ -1,6 +1,6 @@
 use rutie::{
-    methods, module, AnyException, AnyObject, Array, Boolean, Class, Float, Hash, Module, NilClass,
-    Object, RString, Symbol, VM,
+    methods, module, AnyException, AnyObject, Array, Boolean, Float, Module, NilClass, Object,
+    RString, VM,
 };
 use whatlang::{detect, detect_lang, detect_script, detect_with_options, Info, Lang, Options};
 
