@@ -55,9 +55,6 @@ Usage
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
     Whatlang.detect(text, whitelist: list).lang.code # => "ita"
-    
-    text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
-    list = ["eng", "ita"]
     Whatlang.detect(text, blacklist: list).lang.code # => "epo"
 
 Development
