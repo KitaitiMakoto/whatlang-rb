@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require_relative "helper"
 
 class WhatlangTest < Test::Unit::TestCase
   test "VERSION" do
