@@ -71,7 +71,7 @@ fn rinfo(info: Info) -> AnyObject {
     Module::from_existing("Whatlang")
         .get_nested_class("Info")
         .new_instance(&[
-            rlang(info.lang()).into(),
+            rlang(info.lang()),
             RString::new_utf8(info.script().name()).into(),
             Boolean::new(info.is_reliable()).into(),
             Float::new(info.confidence()).into(),
