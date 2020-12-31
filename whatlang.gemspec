@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require "tomlrb"
 require_relative "lib/whatlang/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
-  spec.version       = Whatlang::VERSION
+  spec.version       = Tomlrb.load_file("Cargo.toml")["package"]["version"]
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
 
