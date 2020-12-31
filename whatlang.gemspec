@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.extensions = ["ext/Rakefile"]
 
   spec.add_runtime_dependency "rutie"
 
