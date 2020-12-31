@@ -15,13 +15,13 @@ methods!(
     }
 
     fn wl_detect_with_whitelist(text: RString, list: Array) -> AnyObject {
-        let rlist = list.map_err(|e| VM::raise_ex(e)).unwrap();
+        let rlist = list.map_err(VM::raise_ex).unwrap();
         let list = rlist
             .into_iter()
             .map(|rcode| {
                 let code = rcode
                     .try_convert_to::<RString>()
-                    .map_err(|e| VM::raise_ex(e))
+                    .map_err(VM::raise_ex)
                     .unwrap();
                 Lang::from_code(code.to_str())
             })
@@ -34,13 +34,13 @@ methods!(
     }
 
     fn wl_detect_with_blacklist(text: RString, list: Array) -> AnyObject {
-        let rlist = list.map_err(|e| VM::raise_ex(e)).unwrap();
+        let rlist = list.map_err(VM::raise_ex).unwrap();
         let list = rlist
             .into_iter()
             .map(|rcode| {
                 let code = rcode
                     .try_convert_to::<RString>()
-                    .map_err(|e| VM::raise_ex(e))
+                    .map_err(VM::raise_ex)
                     .unwrap();
                 Lang::from_code(code.to_str())
             })
@@ -64,7 +64,7 @@ methods!(
 );
 
 fn rstring(rstring: Result<RString, AnyException>) -> RString {
-    rstring.map_err(|e| VM::raise_ex(e)).unwrap()
+    rstring.map_err(VM::raise_ex).unwrap()
 }
 
 fn rinfo(info: Info) -> AnyObject {
