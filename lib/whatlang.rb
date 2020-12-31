@@ -1,6 +1,3 @@
-# frozen_string_literal: true
+require "rutie"
 
-module Whatlang
-  class Error < StandardError; end
-  # Your code goes here...
-end
+Rutie.new(:whatlang_rb).init "Init_whatlang", __dir__
