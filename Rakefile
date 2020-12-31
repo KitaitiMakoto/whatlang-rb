@@ -10,3 +10,14 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task default: :test
+
+RUST_TARGET = "target/release/libwhatlang_rb.so"
+RUST_SRC = FileList["src/**/*.rs"]
+
+RUST_SRC.each do |path|
+  file path
+end
+
+file RUST_TARGET => RUST_SRC do
+  sh "cargo build --release"
+end
