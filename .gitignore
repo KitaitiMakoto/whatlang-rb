@@ -6,7 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
-
+Gemfile.lock
 
 # Added by cargo
 
