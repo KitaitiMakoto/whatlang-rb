@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "bundler/gem_tasks"
+require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
 
@@ -12,6 +12,7 @@ end
 
 task default: :test
 
+Gem::Tasks.new
 YARD::Rake::YardocTask.new
 
 RUST_TARGET = "target/release/libwhatlang_rb.so"
