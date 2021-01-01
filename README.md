@@ -59,13 +59,21 @@ Usage
     info.confidence    # => 0.2568924409819 (0 to 1 value)
     info.reliable?     # => false
     
-    Whatlang.detect_lang(text).code # => "bul"
-    Whatlang.detect_script(text)    # => "Cyrillic"
-    
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
     Whatlang.detect(text, whitelist: list).lang.code # => "ita"
     Whatlang.detect(text, blacklist: list).lang.code # => "epo"
+
+If you're interedted in only language information, use `detect_lang` function:
+
+    lang = Whatlang.detect_lang(text)
+    lang.code # => "bul"
+    lang.name # => "Български"
+    lang.eng_name # => "Bulgarian"
+
+Also, Whatlang can detect only scripts:
+
+    Whatlang.detect_script(text) # => "Cyrillic"
 
 Development
 -----------
