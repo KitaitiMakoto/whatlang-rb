@@ -15,40 +15,12 @@ methods!(
     }
 
     fn wl_detect_with_whitelist(text: RString, list: Array) -> AnyObject {
-        let rlist = list.map_err(VM::raise_ex).unwrap();
-        let list = rlist
-            .into_iter()
-            .map(|rcode| {
-                let code = rcode
-                    .try_convert_to::<RString>()
-                    .map_err(VM::raise_ex)
-                    .unwrap();
-                Lang::from_code(code.to_str())
-            })
-            .filter(|lang_res| lang_res.is_some())
-            .map(|lang_res| lang_res.unwrap())
-            .collect::<Vec<Lang>>();
-        let options = Options::new().set_whitelist(list);
-
+        let options = Options::new().set_whitelist(rarray_to_lang_list(list));
         detect_with_options(rstring(text).to_str(), &options).map_or(NilClass::new().into(), rinfo)
     }
 
     fn wl_detect_with_blacklist(text: RString, list: Array) -> AnyObject {
-        let rlist = list.map_err(VM::raise_ex).unwrap();
-        let list = rlist
-            .into_iter()
-            .map(|rcode| {
-                let code = rcode
-                    .try_convert_to::<RString>()
-                    .map_err(VM::raise_ex)
-                    .unwrap();
-                Lang::from_code(code.to_str())
-            })
-            .filter(|lang_res| lang_res.is_some())
-            .map(|lang_res| lang_res.unwrap())
-            .collect::<Vec<Lang>>();
-        let options = Options::new().set_blacklist(list);
-
+        let options = Options::new().set_blacklist(rarray_to_lang_list(list));
         detect_with_options(rstring(text).to_str(), &options).map_or(NilClass::new().into(), rinfo)
     }
 
@@ -65,6 +37,22 @@ methods!(
 
 fn rstring(rstring: Result<RString, AnyException>) -> RString {
     rstring.map_err(VM::raise_ex).unwrap()
+}
+
+fn rarray_to_lang_list(rarray: Result<Array, AnyException>) -> Vec<Lang> {
+    let rlist = rarray.map_err(VM::raise_ex).unwrap();
+    rlist
+        .into_iter()
+        .map(|rcode| {
+            let code = rcode
+                .try_convert_to::<RString>()
+                .map_err(VM::raise_ex)
+                .unwrap();
+            Lang::from_code(code.to_str())
+        })
+        .filter(|lang_res| lang_res.is_some())
+        .map(|lang_res| lang_res.unwrap())
+        .collect::<Vec<Lang>>()
 }
 
 fn rinfo(info: Info) -> AnyObject {
