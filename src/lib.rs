@@ -52,7 +52,7 @@ fn rarray_to_lang_list(rarray: Result<Array, AnyException>) -> Vec<Lang> {
         })
         .filter(|lang_res| lang_res.is_some())
         .map(|lang_res| lang_res.unwrap())
-        .collect::<Vec<Lang>>()
+        .collect()
 }
 
 fn rinfo(info: Info) -> AnyObject {
