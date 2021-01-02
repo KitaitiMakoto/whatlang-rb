@@ -40,8 +40,9 @@ fn rstring(rstring: Result<RString, AnyException>) -> RString {
 }
 
 fn rarray_to_lang_list(rarray: Result<Array, AnyException>) -> Vec<Lang> {
-    let rlist = rarray.map_err(VM::raise_ex).unwrap();
-    rlist
+    rarray
+        .map_err(VM::raise_ex)
+        .unwrap()
         .into_iter()
         .map(|rcode| {
             let code = rcode
