@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0")
   end
-  spec.require_paths = ["lib"]
   spec.extensions = ["ext/Rakefile"]
 
   spec.add_runtime_dependency "rutie"
