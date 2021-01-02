@@ -64,7 +64,7 @@ Usage
     Whatlang.detect(text, whitelist: list).lang.code # => "ita"
     Whatlang.detect(text, blacklist: list).lang.code # => "epo"
 
-If you're interedted in only language information, use `detect_lang` function:
+If you're interested in only language information, use `detect_lang` function:
 
     lang = Whatlang.detect_lang(text)
     lang.code # => "bul"
