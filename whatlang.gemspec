@@ -10,7 +10,6 @@ Gem::Specification.new do |spec|
   spec.summary       = "Natural language detection."
   spec.description   = "Ruby bindings for Whatlang, a natural language detection for Rust."
   spec.homepage      = "https://gitlab.com/KitaitiMakoto/whatlang-rb"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://gitlab.com/KitaitiMakoto/whatlang-rb"
