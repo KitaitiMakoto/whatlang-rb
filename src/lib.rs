@@ -44,15 +44,13 @@ fn rarray_to_lang_list(rarray: Result<Array, AnyException>) -> Vec<Lang> {
         .map_err(VM::raise_ex)
         .unwrap()
         .into_iter()
-        .map(|rcode| {
+        .filter_map(|rcode| {
             let code = rcode
                 .try_convert_to::<RString>()
                 .map_err(VM::raise_ex)
                 .unwrap();
             Lang::from_code(code.to_str())
         })
-        .filter(|lang_res| lang_res.is_some())
-        .map(|lang_res| lang_res.unwrap())
         .collect()
 }
 
