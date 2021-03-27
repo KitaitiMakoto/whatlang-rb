@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rutie = { version = "0.8.1", features = ["no-link"] }
+rutie = { version = "0.8.2", features = ["no-link"] }
 whatlang = "0.11.1"
 
 [lib]
