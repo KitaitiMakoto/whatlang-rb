@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rake/clean"
 require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
@@ -25,4 +26,5 @@ end
 file RUST_TARGET => RUST_SRC do
   sh "cargo build --release"
 end
+CLEAN.include RUST_TARGET
 task test: RUST_TARGET
