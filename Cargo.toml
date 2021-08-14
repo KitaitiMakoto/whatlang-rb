@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 rutie = { version = "0.8.2", features = ["no-link"] }
-whatlang = "0.11.1"
+whatlang = "0.12.0"
 
 [lib]
 crate-type = ["cdylib"]
