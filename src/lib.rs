@@ -14,12 +14,12 @@ methods!(
         detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
     }
 
-    fn wl_detect_with_whitelist(text: RString, list: Array) -> AnyObject {
+    fn wl_detect_with_allowlist(text: RString, list: Array) -> AnyObject {
         let detector = Detector::with_allowlist(rarray_to_lang_list(list));
         detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
     }
 
-    fn wl_detect_with_blacklist(text: RString, list: Array) -> AnyObject {
+    fn wl_detect_with_denylist(text: RString, list: Array) -> AnyObject {
         let detector = Detector::with_denylist(rarray_to_lang_list(list));
         detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
     }
@@ -80,8 +80,8 @@ fn rlang(lang: Lang) -> AnyObject {
 pub extern "C" fn Init_whatlang() {
     Module::new("Whatlang").define(|itself| {
         itself.def_self("detect_without_options", wl_detect_without_options);
-        itself.def_self("detect_with_whitelist", wl_detect_with_whitelist);
-        itself.def_self("detect_with_blacklist", wl_detect_with_blacklist);
+        itself.def_self("detect_with_allowlist", wl_detect_with_allowlist);
+        itself.def_self("detect_with_denylist", wl_detect_with_denylist);
         itself.def_self("detect_lang", wl_detect_lang);
         itself.def_self("detect_script", wl_detect_script);
     });

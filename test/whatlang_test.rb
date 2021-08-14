@@ -8,10 +8,10 @@ class WhatlangTest < Test::Unit::TestCase
     list = ["eng", "ita"]
 
     assert_equal "epo", Whatlang.detect(text).lang.code
-    assert_equal "ita", Whatlang.detect(text, whitelist: list).lang.code
-    assert_equal "epo", Whatlang.detect(text, blacklist: list).lang.code
+    assert_equal "ita", Whatlang.detect(text, allowlist: list).lang.code
+    assert_equal "epo", Whatlang.detect(text, denylist: list).lang.code
     assert_raise ArgumentError do
-      Whatlang.detect(text, whitelist: list, blacklist: list)
+      Whatlang.detect(text, allowlist: list, denylist: list)
     end
   end
 
@@ -22,16 +22,16 @@ class WhatlangTest < Test::Unit::TestCase
     assert_equal "Latin", info.script
   end
 
-  def test_detect_with_whitelist
+  def test_detect_with_allowlist
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
-    assert_equal "ita", Whatlang.detect_with_whitelist(text, list).lang.code
+    assert_equal "ita", Whatlang.detect_with_allowlist(text, list).lang.code
   end
 
-  def test_detect_with_blacklist
+  def test_detect_with_denylist
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
-    assert_equal "epo", Whatlang.detect_with_blacklist(text, list).lang.code
+    assert_equal "epo", Whatlang.detect_with_denylist(text, list).lang.code
   end
 
   def test_detect_lang

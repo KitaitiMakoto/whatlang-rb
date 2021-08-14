@@ -61,8 +61,8 @@ Usage
     
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
-    Whatlang.detect(text, whitelist: list).lang.code # => "ita"
-    Whatlang.detect(text, blacklist: list).lang.code # => "epo"
+    Whatlang.detect(text, allowlist: list).lang.code # => "ita"
+    Whatlang.detect(text, denylist: list).lang.code # => "epo"
 
 If you're interested in only language information, use `detect_lang` function:
 

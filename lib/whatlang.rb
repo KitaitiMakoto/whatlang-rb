@@ -4,16 +4,16 @@ Rutie.new(:whatlang_rb).init "Init_whatlang", __dir__
 
 module Whatlang
   class << self
-    def detect(text, whitelist: nil, blacklist: nil)
-      if blacklist && whitelist
-        raise ArgumentError, "Couldn't specify `whitelist' and `blacklist' at a time. Choose one."
+    def detect(text, allowlist: nil, denylist: nil)
+      if denylist && allowlist
+        raise ArgumentError, "Couldn't specify `allowlist' and `denylist' at a time. Choose one."
       end
 
       case
-      when whitelist
-        detect_with_whitelist(text, whitelist)
-      when blacklist
-        detect_with_blacklist(text, blacklist)
+      when allowlist
+        detect_with_allowlist(text, allowlist)
+      when denylist
+        detect_with_denylist(text, denylist)
       else
         detect_without_options(text)
       end
