@@ -2,7 +2,7 @@ use rutie::{
     methods, module, AnyException, AnyObject, Array, Boolean, Float, Module, NilClass, Object,
     RString, VM,
 };
-use whatlang::{detect, detect_lang, detect_script, detect_with_options, Info, Lang, Options};
+use whatlang::{detect, detect_lang, detect_script, Detector, Info, Lang};
 
 module!(Whatlang);
 
@@ -15,13 +15,13 @@ methods!(
     }
 
     fn wl_detect_with_whitelist(text: RString, list: Array) -> AnyObject {
-        let options = Options::new().set_whitelist(rarray_to_lang_list(list));
-        detect_with_options(rstring(text).to_str(), &options).map_or(NilClass::new().into(), rinfo)
+        let detector = Detector::with_allowlist(rarray_to_lang_list(list));
+        detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
     }
 
     fn wl_detect_with_blacklist(text: RString, list: Array) -> AnyObject {
-        let options = Options::new().set_blacklist(rarray_to_lang_list(list));
-        detect_with_options(rstring(text).to_str(), &options).map_or(NilClass::new().into(), rinfo)
+        let detector = Detector::with_denylist(rarray_to_lang_list(list));
+        detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
     }
 
     fn wl_detect_lang(text: RString) -> AnyObject {
