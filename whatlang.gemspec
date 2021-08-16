@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
 
-  spec.summary       = "Natural language detection library."
+  spec.summary       = "Fast natural language detection library."
   spec.description   = "Ruby bindings for Whatlang, a natural language detection for Rust."
   spec.homepage      = "https://gitlab.com/KitaitiMakoto/whatlang-rb"
 
