@@ -50,7 +50,7 @@ Usage
     require "whatlang"
     
     text = "Благодаря Эсперанто вы обрётете друзей по всему миру!"
-
+    
     info = Whatlang.detect(text)
     info.lang.code     # => "bul"
     info.lang.name     # => "Български"
