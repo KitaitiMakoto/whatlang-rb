@@ -1,3 +1,8 @@
+0.1.2
+=====
+
+* Update Whatlang version to 0.13.0, which includes Tagalog support
+
 0.1.1
 =====
 
