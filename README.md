@@ -90,7 +90,7 @@ Bug reports and pull requests are welcome on GitHub at https://gitlab.com/Kitait
 License
 -------
 
-This RubyGem distributed under the AGPL 3.0 or later. See {file:agpl-3.0.txt} file.
+This RubyGem distributed under the Ruby's license. See {file:COPYING} file.
 
 [Whatlang]: https://github.com/greyblake/whatlang-rs
 [installer]: https://static.rust-lang.org/rustup/dist/i686-pc-windows-gnu/rustup-init.exe
