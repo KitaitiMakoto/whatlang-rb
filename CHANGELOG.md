@@ -1,3 +1,8 @@
+0.1.4
+=====
+
+* Update Whatlang version to 0.15.0, which includes performance improvement of Cyrillic
+
 0.1.3
 =====
 
