@@ -7,8 +7,8 @@ default:
     - gem install bundler -v 2.4.22
     - bundle install
 
-example_job:
+test:
   variables:
     RB_SYS_FORCE_INSTALL_RUST_TOOLCHAIN: 'true'
   script:
-    - bundle exec rake
+    - bundle exec rake test
