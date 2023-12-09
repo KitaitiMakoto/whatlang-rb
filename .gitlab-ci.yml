@@ -1,0 +1,14 @@
+default:
+  image: ruby:3.2.2
+
+  before_script:
+    - apt-get update && apt-get install -y clang
+    - gem update --system '3.4.22'
+    - gem install bundler -v 2.4.22
+    - bundle install
+
+example_job:
+  variables:
+    RB_SYS_FORCE_INSTALL_RUST_TOOLCHAIN: 'true'
+  script:
+    - bundle exec rake
