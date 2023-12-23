@@ -2,7 +2,7 @@
 
 require_relative "helper"
 
-class WhatlangTest < Test::Unit::TestCase
+class TestWhatlang < Test::Unit::TestCase
   def test_detect
     text = "Ĉu vi ne volas eklerni Esperanton? Bonvolu!"
     list = ["eng", "ita"]
