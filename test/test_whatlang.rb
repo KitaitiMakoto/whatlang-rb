@@ -43,4 +43,10 @@ class TestWhatlang < Test::Unit::TestCase
     text = "Благодаря Эсперанто вы обрётете друзей по всему миру!"
     assert_equal "Cyrillic", Whatlang.detect_script(text)
   end
+
+  def test_detect_empty_string
+    assert_raise TypeError do
+      Whatlang.detect(nil)
+    end
+  end
 end
