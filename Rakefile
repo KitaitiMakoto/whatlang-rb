@@ -5,8 +5,6 @@ require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
 
-Rake::TestTask.new
-
 task default: :test
 
 Gem::Tasks.new
@@ -23,4 +21,5 @@ file RUST_TARGET => RUST_SRC + ["Cargo.toml", "Cargo.lock"] do
   sh "cargo build --release"
 end
 CLEAN.include RUST_TARGET
-task test: RUST_TARGET
+
+Rake::TestTask.new test: RUST_TARGET
