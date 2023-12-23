@@ -19,7 +19,7 @@ RUST_SRC.each do |path|
   file path
 end
 
-file RUST_TARGET => RUST_SRC do
+file RUST_TARGET => RUST_SRC + ["Cargo.toml", "Cargo.lock"] do
   sh "cargo build --release"
 end
 CLEAN.include RUST_TARGET
