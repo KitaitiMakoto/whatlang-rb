@@ -44,10 +44,25 @@ class TestWhatlang < Test::Unit::TestCase
     assert_equal "Cyrillic", Whatlang.detect_script(text)
   end
 
+  def test_detect_empty_string
+    assert_raise ArgumentError do
+      Whatlang.detect("")
+    end
+  end
+
   def test_detect_nil
-    pend
-    assert_raise TypeError do
+    assert_raise ArgumentError do
       Whatlang.detect(nil)
     end
+  end
+
+  def test_inspect
+    assert_nothing_raised do
+      Whatlang.detect("こんにちは").inspect
+    end
+  end
+
+  def test_numeric
+    assert_nil Whatlang.detect(1234)
   end
 end

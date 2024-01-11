@@ -9,6 +9,9 @@ module Whatlang
         raise ArgumentError, "Couldn't specify `allowlist' and `denylist' at a time. Choose one."
       end
 
+      text = text.to_s
+      raise ArgumentError, "text is empty String or so" if text.empty?
+
       case
       when allowlist
         detect_with_allowlist(text, allowlist)
@@ -44,4 +47,11 @@ module Whatlang
       @eng_name = eng_name
     end
   end
+
+  private
+
+  # Class returnned by detect when no lang detected.
+  # 
+  # Needed because Rutie cause segmentation fault when it returns NilClass
+  NO_INFO = nil
 end

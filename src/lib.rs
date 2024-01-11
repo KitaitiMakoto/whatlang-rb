@@ -1,5 +1,5 @@
 use rutie::{
-    methods, module, AnyException, AnyObject, Array, Boolean, Float, Module, NilClass, Object,
+    methods, module, AnyException, AnyObject, Array, Boolean, Float, Module, Object,
     RString, VM,
 };
 use whatlang::{detect, detect_lang, detect_script, Detector, Info, Lang};
@@ -11,25 +11,25 @@ methods!(
     _rtself,
 
     fn wl_detect_without_options(text: RString) -> AnyObject {
-        detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
+        detect(rstring(text).to_str()).map_or(no_info(), rinfo)
     }
 
     fn wl_detect_with_allowlist(text: RString, list: Array) -> AnyObject {
         let detector = Detector::with_allowlist(rarray_to_lang_list(list));
-        detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
+        detector.detect(rstring(text).to_str()).map_or(no_info(), rinfo)
     }
 
     fn wl_detect_with_denylist(text: RString, list: Array) -> AnyObject {
         let detector = Detector::with_denylist(rarray_to_lang_list(list));
-        detector.detect(rstring(text).to_str()).map_or(NilClass::new().into(), rinfo)
+        detector.detect(rstring(text).to_str()).map_or(no_info(), rinfo)
     }
 
     fn wl_detect_lang(text: RString) -> AnyObject {
-        detect_lang(rstring(text).to_str()).map_or(NilClass::new().into(), rlang)
+        detect_lang(rstring(text).to_str()).map_or(no_info().into(), rlang)
     }
 
     fn wl_detect_script(text: RString) -> AnyObject {
-        detect_script(rstring(text).to_str()).map_or(NilClass::new().into(), |script| {
+        detect_script(rstring(text).to_str()).map_or(no_info().into(), |script| {
             RString::new_utf8(script.name()).into()
         })
     }
@@ -73,6 +73,11 @@ fn rlang(lang: Lang) -> AnyObject {
             RString::new_utf8(lang.name()).into(),
             RString::new_utf8(lang.eng_name()).into(),
         ])
+}
+
+fn no_info() -> AnyObject {
+    Module::from_existing("Whatlang")
+        .const_get("NO_INFO")
 }
 
 #[allow(non_snake_case)]
