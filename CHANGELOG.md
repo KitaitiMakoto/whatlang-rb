@@ -2,6 +2,7 @@
 =====
 
 * Check argument and return value. Thanks [@bendangelo][] for filing a issue!
+* Update Whatlang version to 0.16.4, which includes bug fix on Czech
 
 0.1.5
 ====
