@@ -75,6 +75,8 @@ fn rlang(lang: Lang) -> AnyObject {
         ])
 }
 
+// Needed because Rutie cause segmentation fault when it returns NilClass.
+// Should be removed after https://github.com/danielpclark/rutie/pull/180 is solved.
 fn no_info() -> AnyObject {
     Module::from_existing("Whatlang")
         .const_get("NO_INFO")

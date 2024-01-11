@@ -51,6 +51,7 @@ module Whatlang
 
   # Class returnned by detect when no lang detected.
   # 
-  # Needed because Rutie cause segmentation fault when it returns NilClass
+  # Needed because Rutie cause segmentation fault when it returns NilClass.
+  # Should be removed after https://github.com/danielpclark/rutie/pull/180 is solved.
   NO_INFO = nil
 end
