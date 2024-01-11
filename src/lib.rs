@@ -25,11 +25,11 @@ methods!(
     }
 
     fn wl_detect_lang(text: RString) -> AnyObject {
-        detect_lang(rstring(text).to_str()).map_or(no_info().into(), rlang)
+        detect_lang(rstring(text).to_str()).map_or(no_info(), rlang)
     }
 
     fn wl_detect_script(text: RString) -> AnyObject {
-        detect_script(rstring(text).to_str()).map_or(no_info().into(), |script| {
+        detect_script(rstring(text).to_str()).map_or(no_info(), |script| {
             RString::new_utf8(script.name()).into()
         })
     }
