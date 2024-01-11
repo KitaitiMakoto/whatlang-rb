@@ -1,3 +1,8 @@
+0.1.6
+=====
+
+* Check argument and return value. Thanks [@bendangelo][] for filing a issue!
+
 0.1.5
 ====
 
@@ -28,3 +33,5 @@
 =====
 
 * Initial release
+
+[@bendangelo]: https://gitlab.com/bendangelo
