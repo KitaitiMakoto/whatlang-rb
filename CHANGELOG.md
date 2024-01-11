@@ -5,7 +5,7 @@
 * Update Whatlang version to 0.16.4, which includes bug fix on Czech
 
 0.1.5
-====
+=====
 
 * Update Whatlang version to 0.16.0, which includes addition of Armenian
 
