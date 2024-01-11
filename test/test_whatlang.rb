@@ -45,15 +45,11 @@ class TestWhatlang < Test::Unit::TestCase
   end
 
   def test_detect_empty_string
-    assert_raise ArgumentError do
-      Whatlang.detect("")
-    end
+    assert_nil Whatlang.detect("")
   end
 
   def test_detect_nil
-    assert_raise ArgumentError do
-      Whatlang.detect(nil)
-    end
+    assert_nil Whatlang.detect(nil)
   end
 
   def test_inspect

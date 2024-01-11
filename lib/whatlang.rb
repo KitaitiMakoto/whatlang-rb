@@ -10,7 +10,6 @@ module Whatlang
       end
 
       text = text.to_s
-      raise ArgumentError, "text is empty String or so" if text.empty?
 
       case
       when allowlist
