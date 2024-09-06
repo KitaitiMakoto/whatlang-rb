@@ -1,3 +1,8 @@
+0.1.7
+=====
+
+* Stick Rust version to 1.77.2. See https://github.com/danielpclark/rutie/issues/185 for details
+
 0.1.6
 =====
 
