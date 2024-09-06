@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "yard"
   spec.add_development_dependency "rubygems-tasks"
-  spec.add_runtime_dependency "racc"
+  spec.add_development_dependency "racc"
 end
