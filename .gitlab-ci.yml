@@ -1,5 +1,5 @@
 default:
-  image: ruby:3.3.5
+  image: ruby:3.3.6
 
   before_script:
     - apt-get update && apt-get install -y clang
