@@ -5,7 +5,6 @@ default:
     - apt-get update && apt-get install -y clang
     - gem update --system
     - gem install bundler
-    - gem install tomlrb
     - bundle install
     - curl https://sh.rustup.rs -sSf | sh -s -- -y
 
