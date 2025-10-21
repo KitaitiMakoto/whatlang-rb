@@ -1,12 +1,3 @@
-[package]
-name = "whatlang-rb"
-version = "0.1.7"
-authors = ["Kitaiti Makoto <KitaitiMakoto@gmail.com>"]
-edition = "2018"
-
-[dependencies]
-rutie = { version = "0.9.0", features = ["no-link"] }
-whatlang = "0.16.4"
-
-[lib]
-crate-type = ["cdylib"]
+[workspace]
+members = ["ext/whatlang-rb"]
+resolver = "3"

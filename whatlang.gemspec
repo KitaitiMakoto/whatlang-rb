@@ -2,7 +2,7 @@ require "tomlrb"
 
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
-  spec.version       = Tomlrb.load_file("Cargo.toml")["package"]["version"]
+  spec.version       = Tomlrb.load_file("ext/whatlang-rb/Cargo.toml")["package"]["version"]
   spec.license       = "Ruby"
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0")
   end
-  spec.extensions = ["ext/Rakefile"]
+  spec.extensions = ["ext/whatlang-rb/extconf.rb"]
 
-  spec.add_runtime_dependency "rutie"
+  spec.add_runtime_dependency "rb_sys"
 
   spec.add_development_dependency "tomlrb"
   spec.add_development_dependency "test-unit"
@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard"
   spec.add_development_dependency "rubygems-tasks"
   spec.add_development_dependency "racc"
+  spec.add_development_dependency "rake-compiler"
 end

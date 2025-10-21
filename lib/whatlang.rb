@@ -1,6 +1,4 @@
-require "rutie"
-
-Rutie.new(:whatlang_rb).init "Init_whatlang", __dir__
+require "whatlang_rb"
 
 module Whatlang
   class << self
@@ -21,37 +19,4 @@ module Whatlang
       end
     end
   end
-
-  class Info
-    attr_reader :lang, :script, :confidence
-
-    def initialize(lang, script, is_reliable, confidence)
-      @lang = lang
-      @script = script
-      @is_reliable = is_reliable
-      @confidence = confidence
-    end
-
-    def reliable?
-      @is_reliable
-    end
-  end
-
-  class Lang
-    attr_reader :code, :name, :eng_name
-
-    def initialize(code, name, eng_name)
-      @code = code
-      @name = name
-      @eng_name = eng_name
-    end
-  end
-
-  private
-
-  # Class returnned by detect when no lang detected.
-  # 
-  # Needed because Rutie cause segmentation fault when it returns NilClass.
-  # Should be removed after https://github.com/danielpclark/rutie/pull/180 is solved.
-  NO_INFO = nil
 end

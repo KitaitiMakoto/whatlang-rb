@@ -3,6 +3,7 @@
 require "rake/clean"
 require "rubygems/tasks"
 require "rake/testtask"
+require "rb_sys/extensiontask"
 require "yard"
 
 task default: :test
@@ -10,16 +11,9 @@ task default: :test
 Gem::Tasks.new
 YARD::Rake::YardocTask.new
 
-RUST_TARGET = "target/release/libwhatlang_rb.so"
-RUST_SRC = FileList["src/**/*.rs"]
+GEMSPEC = Gem::Specification.load("whatlang.gemspec")
+RbSys::ExtensionTask.new("whatlang-rb", GEMSPEC)
+task build: :compile
 
-RUST_SRC.each do |path|
-  file path
-end
-
-file RUST_TARGET => RUST_SRC + ["Cargo.toml", "Cargo.lock"] do
-  sh "cargo build --release"
-end
-CLEAN.include RUST_TARGET
-
-Rake::TestTask.new test: RUST_TARGET
+Rake::TestTask.new
+task test: :compile

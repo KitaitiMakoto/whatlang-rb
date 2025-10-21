@@ -26,6 +26,7 @@ class TestWhatlang < Test::Unit::TestCase
     text = "Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo."
     list = ["eng", "ita"]
     assert_equal "ita", Whatlang.detect_with_allowlist(text, list).lang.code
+    assert_equal "ita", Whatlang.detect_with_allowlist(text, list + ["unknown"]).lang.code
   end
 
   def test_detect_with_denylist

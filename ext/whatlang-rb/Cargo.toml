@@ -1,0 +1,12 @@
+[package]
+name = "whatlang-rb"
+version = "0.1.7"
+authors = ["Kitaiti Makoto <KitaitiMakoto@gmail.com>"]
+edition = "2024"
+
+[dependencies]
+magnus = "0.8"
+whatlang = "0.16.4"
+
+[lib]
+crate-type = ["cdylib"]
