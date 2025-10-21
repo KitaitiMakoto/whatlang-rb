@@ -1,1 +1,1 @@
-require "whatlang_rb"
+require "whatlang-rb/whatlang_rb"

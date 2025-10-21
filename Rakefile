@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "rake/clean"
+require "rubygems/ext/cargo_builder"
 require "rubygems/tasks"
 require "rake/testtask"
-require "rb_sys/extensiontask"
 require "yard"
 
 task default: :test
@@ -11,13 +11,13 @@ task default: :test
 Gem::Tasks.new
 YARD::Rake::YardocTask.new
 
-GEMSPEC = Gem::Specification.load("whatlang.gemspec")
-RbSys::ExtensionTask.new("whatlang-rb", GEMSPEC)
-task build: :compile
+EXTENSION = "lib/whatlang-rb/whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}"
+file EXTENSION do
+  results = Rake.verbose == true ? $stdout : []
+  Gem::Ext::CargoBuilder.new.build "ext/whatlang-rb/Cargo.toml", ".", results, [], "lib", File.expand_path("ext/whatlang-rb")
+end
+CLEAN.include "whatlang-rb"
+CLOBBER.include EXTENSION
 
 Rake::TestTask.new
-task test: :compile
-
-CLEAN.include "ext/whatlang-rb/Makefile"
-CLEAN.include "ext/whatlang-rb/mkmf.log"
-CLEAN.include "lib/whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}"
+task test: EXTENSION

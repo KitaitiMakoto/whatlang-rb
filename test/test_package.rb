@@ -1,4 +1,4 @@
-require_relative "helper"
+require "test/unit"
 require 'tempfile'
 require 'tmpdir'
 require 'shellwords'
@@ -20,15 +20,19 @@ class TestPackage < Test::Unit::TestCase
     def test_install
       gemspec = Gem::Specification.load("whatlang.gemspec")
       Dir.mktmpdir do |dir|
+        dir = File.realpath(dir)
         system "gem", "install", "--install-dir", dir.shellescape, "--no-document", "pkg/#{gemspec.file_name.shellescape}", exception: true
         assert_installed dir, gemspec.version
+
+        libdir = File.join(dir, "gems", "#{gemspec.name}-#{gemspec.version}", "lib")
+        assert_match(/ita/, `ruby -I #{libdir.shellescape} -r whatlang -e 'print Whatlang.detect("Jen la trinkejo fermitis, ni iras tra mallumo kaj pluvo.", allowlist: ["eng", "ita"]).lang.code'`)
       end
     end
 
     private
 
     def assert_installed(dir, version)
-      assert_path_exist File.join(dir, "gems/whatlang-#{version}/lib", "whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}")
+      assert_path_exist File.join(dir, "gems/whatlang-#{version}/lib/whatlang-rb", "whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}")
     end
   end
 end

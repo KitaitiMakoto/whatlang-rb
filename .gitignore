@@ -7,12 +7,5 @@
 /spec/reports/
 /tmp/
 Gemfile.lock
-
-# Added by cargo
-
-/target
-
-/ext/whatlang-rb/Makefile
-/ext/whatlang-rb/mkmf.log
-/lib/whatlang_rb.bundle
-
+/lib/whatlang-rb/whatlang_rb.bundle
+/whatlang-rb/
