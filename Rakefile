@@ -17,7 +17,7 @@ file CARGO_LOCK => "ext/Cargo.toml" do |t|
   system "cargo", "update", "--manifest-path", t.source, `cargo pkgid --manifest-path=#{t.source.shellescape}`.chomp, exception: true
 end
 
-EXTENSION = "lib/whatlang/whatlang.#{RbConfig::CONFIG["DLEXT"]}"
+EXTENSION = "lib/whatlang.#{RbConfig::CONFIG["DLEXT"]}"
 file EXTENSION => CARGO_LOCK do
   results = Rake.verbose == true ? $stdout : []
   Gem::Ext::CargoBuilder.new.build "ext/Cargo.toml", ".", results, [], "lib", File.expand_path("ext")
