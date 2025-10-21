@@ -13,4 +13,4 @@ test:
   variables:
     RB_SYS_FORCE_INSTALL_RUST_TOOLCHAIN: 'true'
   script:
-    - source "$HOME/.cargo/env" && bundle exec rake test
+    - source "$HOME/.cargo/env" && rake test
