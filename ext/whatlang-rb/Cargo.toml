@@ -3,6 +3,7 @@ name = "whatlang-rb"
 version = "0.1.9"
 authors = ["Kitaiti Makoto <KitaitiMakoto@gmail.com>"]
 edition = "2024"
+publish = false
 
 [dependencies]
 magnus = "0.8"
