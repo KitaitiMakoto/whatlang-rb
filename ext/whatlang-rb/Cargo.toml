@@ -6,7 +6,7 @@ edition = "2024"
 
 [dependencies]
 magnus = "0.8"
-whatlang = "0.16.4"
+whatlang = "0.18.0"
 
 [lib]
 crate-type = ["cdylib"]
