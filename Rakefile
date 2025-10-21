@@ -22,7 +22,7 @@ file EXTENSION => CARGO_LOCK do
   results = Rake.verbose == true ? $stdout : []
   Gem::Ext::CargoBuilder.new.build "ext/Cargo.toml", ".", results, [], "lib", File.expand_path("ext")
 end
-CLEAN.include "whatlang"
+CLEAN.include "whatlang.bundle"
 CLOBBER.include EXTENSION
 
 Rake::TestTask.new
