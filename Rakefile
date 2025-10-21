@@ -26,3 +26,7 @@ CLOBBER.include EXTENSION
 
 Rake::TestTask.new
 task test: EXTENSION
+
+task doc: :yard do
+  system "cargo", "doc", "--manifest-path", "ext/whatlang-rb/Cargo.toml", exception: true
+end
