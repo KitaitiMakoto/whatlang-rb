@@ -1,4 +1,8 @@
-use magnus::{Error, Ruby, function, method, prelude::*};
+use magnus::{
+    Error, Ruby, Value, function, method,
+    prelude::*,
+    scan_args::{get_kwargs, scan_args},
+};
 use whatlang as wl;
 
 #[magnus::wrap(class = "Whatlang::Lang")]
@@ -39,30 +43,47 @@ impl Info {
     }
 }
 
+fn detect(ruby: &Ruby, args: &[Value]) -> Result<Option<Info>, Error> {
+    type LangList = Option<Vec<String>>;
+
+    let args = scan_args::<(Value,), (), (), (), _, ()>(args)?;
+    let kw_args = get_kwargs::<_, (), (LangList, LangList), ()>(
+        args.keywords,
+        &[],
+        &["allowlist", "denylist"],
+    )?;
+    let (allowlist, denylist) = kw_args.optional;
+    if allowlist.is_some() && denylist.is_some() {
+        return Err(Error::new(
+            ruby.exception_arg_error(),
+            "Couldn't specify `allowlist' and `denylist' at a time. Choose one.",
+        ));
+    }
+
+    let text = args.required.0.to_r_string()?.to_string()?;
+    Ok(if let Some(allowlist) = allowlist {
+        detect_with_allowlist(text, allowlist)
+    } else if let Some(denylist) = denylist {
+        detect_with_denylist(text, denylist)
+    } else {
+        detect_without_options(text)
+    })
+}
+
 fn detect_without_options(text: String) -> Option<Info> {
     wl::detect(&text).map(Info)
 }
 
 fn detect_with_allowlist(text: String, allowlist: Vec<String>) -> Option<Info> {
-    wl::Detector::with_allowlist(
-        allowlist
-            .iter()
-            .filter_map(wl::Lang::from_code)
-            .collect(),
-    )
-    .detect(&text)
-    .map(Info)
+    wl::Detector::with_allowlist(allowlist.iter().filter_map(wl::Lang::from_code).collect())
+        .detect(&text)
+        .map(Info)
 }
 
 fn detect_with_denylist(text: String, denylist: Vec<String>) -> Option<Info> {
-    wl::Detector::with_denylist(
-        denylist
-            .iter()
-            .filter_map(wl::Lang::from_code)
-            .collect(),
-    )
-    .detect(&text)
-    .map(Info)
+    wl::Detector::with_denylist(denylist.iter().filter_map(wl::Lang::from_code).collect())
+        .detect(&text)
+        .map(Info)
 }
 
 fn detect_lang(text: String) -> Option<Lang> {
@@ -80,6 +101,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "detect_without_options",
         function!(detect_without_options, 1),
     )?;
+    module.define_singleton_method("detect", function!(detect, -1))?;
     module.define_singleton_method("detect_with_allowlist", function!(detect_with_allowlist, 2))?;
     module.define_singleton_method("detect_with_denylist", function!(detect_with_denylist, 2))?;
     module.define_singleton_method("detect_lang", function!(detect_lang, 1))?;
