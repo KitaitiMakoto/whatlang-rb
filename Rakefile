@@ -11,8 +11,13 @@ task default: :test
 Gem::Tasks.new
 YARD::Rake::YardocTask.new
 
+CARGO_LOCK = "ext/whatlang-rb/Cargo.lock"
+file CARGO_LOCK => "ext/whatlang-rb/Cargo.toml" do |t|
+  system "cargo", "update", "--manifest-path", t.source, "whatlang-rb", exception: true
+end
+
 EXTENSION = "lib/whatlang-rb/whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}"
-file EXTENSION do
+file EXTENSION => CARGO_LOCK do
   results = Rake.verbose == true ? $stdout : []
   Gem::Ext::CargoBuilder.new.build "ext/whatlang-rb/Cargo.toml", ".", results, [], "lib", File.expand_path("ext/whatlang-rb")
 end
