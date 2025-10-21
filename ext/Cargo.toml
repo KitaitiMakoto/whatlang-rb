@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 magnus = "0.8"
-whatlang-rs = { package = "whatlang", git = "https://github.com/greyblake/whatlang-rs.git", tag = "v0.18.0" }
+whatlang-rs = { package = "whatlang", version = "0.18.0", registry = "crates-io" }
 rb-sys = ">= 0.0.0"
 
 [features]
