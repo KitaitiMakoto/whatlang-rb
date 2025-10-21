@@ -1,3 +1,8 @@
+0.2.0
+=====
+
+* Add rb-sys/stable-api-compiled-fallback for some environment
+
 0.1.9
 =====
 
