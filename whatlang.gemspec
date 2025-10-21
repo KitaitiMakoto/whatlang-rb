@@ -1,8 +1,8 @@
-require "tomlrb"
+require "json"
 
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
-  spec.version       = Tomlrb.load_file("ext/whatlang-rb/Cargo.toml")["package"]["version"]
+  spec.version       = JSON.parse(`cargo metadata --format-version=1`)["packages"][0]["version"]
   spec.license       = "Ruby"
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rb_sys"
 
-  spec.add_development_dependency "tomlrb"
   spec.add_development_dependency "test-unit"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "yard"
