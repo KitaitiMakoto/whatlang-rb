@@ -1,3 +1,8 @@
+0.1.8
+=====
+
+* Switch Rust glue library from [Rutie][] to [Magnus][]
+
 0.1.7
 =====
 
@@ -41,3 +46,5 @@
 * Initial release
 
 [@bendangelo]: https://gitlab.com/bendangelo
+[Rutie]: https://github.com/danielpclark/rutie
+[Magnus]: https://docs.rs/magnus/latest/magnus/
