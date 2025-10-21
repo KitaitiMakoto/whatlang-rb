@@ -4,6 +4,7 @@ default:
   before_script:
     - apt-get update && apt-get install -y clang
     - curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - . "$HOME/.cargo/env"
     - gem update --system
     - gem install bundler
     - bundle install
