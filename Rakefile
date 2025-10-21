@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rake/clean"
-require "rubygems/ext/cargo_builder"
+require "rubygems/ext"
 require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
