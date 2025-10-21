@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
-require_relative "helper"
+require "test/unit"
+require "whatlang"
 
 class TestWhatlang < Test::Unit::TestCase
   def test_detect
