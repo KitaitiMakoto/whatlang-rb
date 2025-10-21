@@ -17,3 +17,6 @@ task build: :compile
 
 Rake::TestTask.new
 task test: :compile
+
+CLEAN.include "ext/whatlang-rb/Makefile"
+CLEAN.include "ext/whatlang-rb/mkmf.log"
