@@ -306,19 +306,18 @@ checksum = "462eeb75aeb73aea900253ce739c8e18a67423fadf006037cd3ff27e82748a06"
 
 [[package]]
 name = "whatlang"
-version = "0.18.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f5e8f38b596e2a359b755342473520a99421e43658548c79489ee221b728c107"
-dependencies = [
- "hashbrown",
-]
-
-[[package]]
-name = "whatlang-rb"
 version = "0.1.9"
 dependencies = [
  "magnus",
- "whatlang",
+ "whatlang 0.18.0",
+]
+
+[[package]]
+name = "whatlang"
+version = "0.18.0"
+source = "git+https://github.com/greyblake/whatlang-rs.git?tag=v0.18.0#584009bbdbd715681fc1c144ac986814104bedbc"
+dependencies = [
+ "hashbrown",
 ]
 
 [[package]]

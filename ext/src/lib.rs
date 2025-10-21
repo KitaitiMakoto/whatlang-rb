@@ -3,7 +3,7 @@ use magnus::{
     prelude::*,
     scan_args::{get_kwargs, scan_args},
 };
-use whatlang as wl;
+use whatlang_rs as wl;
 
 #[magnus::wrap(class = "Whatlang::Lang")]
 struct Lang(wl::Lang);

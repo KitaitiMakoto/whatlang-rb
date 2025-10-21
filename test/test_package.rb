@@ -32,7 +32,7 @@ class TestPackage < Test::Unit::TestCase
     private
 
     def assert_installed(dir, version)
-      assert_path_exist File.join(dir, "gems/whatlang-#{version}/lib/whatlang-rb", "whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}")
+      assert_path_exist File.join(dir, "gems/whatlang-#{version}/lib", "whatlang.#{RbConfig::CONFIG["DLEXT"]}")
     end
   end
 end

@@ -1,5 +1,5 @@
 [package]
-name = "whatlang-rb"
+name = "whatlang"
 version = "0.1.9"
 authors = ["Kitaiti Makoto <KitaitiMakoto@gmail.com>"]
 edition = "2024"
@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 magnus = "0.8"
-whatlang = "0.18.0"
+whatlang-rs = { package = "whatlang", git = "https://github.com/greyblake/whatlang-rs.git", tag = "v0.18.0" }
 
 [lib]
 crate-type = ["cdylib"]
