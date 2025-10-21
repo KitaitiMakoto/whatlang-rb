@@ -8,7 +8,7 @@ Features
 
 Features are derived from original [Whatlang][] library, which includes:
 
-* Supports [69 languages](https://github.com/greyblake/whatlang-rs/blob/master/SUPPORTED_LANGUAGES.md)
+* Supports [70 languages](https://github.com/greyblake/whatlang-rs/blob/master/SUPPORTED_LANGUAGES.md)
 * Lightweight, fast and simple
 * Recognizes not only a language, but also a script (Latin, Cyrillic, etc)
 * Provides reliability information
