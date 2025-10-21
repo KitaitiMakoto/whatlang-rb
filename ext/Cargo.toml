@@ -8,10 +8,7 @@ publish = false
 [dependencies]
 magnus = "0.8"
 whatlang-rs = { package = "whatlang", version = "0.18.0", registry = "crates-io" }
-rb-sys = ">= 0.0.0"
-
-[features]
-default = ["rb-sys/stable-api-compiled-fallback"]
+rb-sys = { version = "*", features = ["stable-api-compiled-fallback"] }
 
 [lib]
 crate-type = ["cdylib"]
