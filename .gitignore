@@ -13,7 +13,6 @@ Gemfile.lock
 /target
 
 /ext/whatlang-rb/Makefile
-/ext/whatlang-rb/extconf.rb
 /ext/whatlang-rb/mkmf.log
 /lib/whatlang_rb.bundle
 
