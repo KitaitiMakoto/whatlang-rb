@@ -20,3 +20,4 @@ task test: :compile
 
 CLEAN.include "ext/whatlang-rb/Makefile"
 CLEAN.include "ext/whatlang-rb/mkmf.log"
+CLEAN.include "lib/whatlang_rb.#{RbConfig::CONFIG["DLEXT"]}"
