@@ -1,3 +1,9 @@
+0.1.9
+=====
+
+* Fix install problem
+* Update Whatlang version to 0.18.0, which includes Welsh support
+
 0.1.8
 =====
 
