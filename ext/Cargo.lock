@@ -309,6 +309,7 @@ name = "whatlang"
 version = "0.1.9"
 dependencies = [
  "magnus",
+ "rb-sys",
  "whatlang 0.18.0",
 ]
 
