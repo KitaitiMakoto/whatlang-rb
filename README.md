@@ -64,6 +64,20 @@ Usage
     Whatlang.detect(text, allowlist: list).lang.code # => "ita"
     Whatlang.detect(text, denylist: list).lang.code # => "epo"
 
+If you need available languages, use `Whatlang::Lang.all`:
+
+    puts Whatlang::Lang.all.collect {|lang| "#{lang.code}: #{lang.eng_name}"}
+    # epo: Esperanto
+    # eng: English
+    # rus: Russian
+    # cmn: Mandarin
+    # spa: Spanish
+    # por: Portuguese
+    #   :
+    #   :
+
+Use `Whatlang::Lang#code` for allow and deny list.
+
 If you're interested in only language information, use `detect_lang` function:
 
     lang = Whatlang.detect_lang(text)
