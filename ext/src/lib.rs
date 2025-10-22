@@ -75,15 +75,19 @@ fn detect_without_options(text: String) -> Option<Info> {
 }
 
 fn detect_with_allowlist(text: String, allowlist: Vec<String>) -> Option<Info> {
-    wl::Detector::with_allowlist(allowlist.iter().filter_map(wl::Lang::from_code).collect())
+    wl::Detector::with_allowlist(lang_list(allowlist))
         .detect(&text)
         .map(Info)
 }
 
 fn detect_with_denylist(text: String, denylist: Vec<String>) -> Option<Info> {
-    wl::Detector::with_denylist(denylist.iter().filter_map(wl::Lang::from_code).collect())
+    wl::Detector::with_denylist(lang_list(denylist))
         .detect(&text)
         .map(Info)
+}
+
+fn lang_list(list: Vec<String>) -> Vec<wl::Lang> {
+    list.iter().filter_map(wl::Lang::from_code).collect()
 }
 
 fn detect_lang(text: String) -> Option<Lang> {
