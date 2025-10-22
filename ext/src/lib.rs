@@ -1,5 +1,5 @@
 use magnus::{
-    Error, Ruby, Value, function, method,
+    Error, RArray, Ruby, Value, function, method,
     prelude::*,
     scan_args::{get_kwargs, scan_args},
 };
@@ -9,6 +9,11 @@ use whatlang_rs as wl;
 struct Lang(wl::Lang);
 
 impl Lang {
+    fn all(ruby: &Ruby) -> RArray {
+        let langs = wl::Lang::all();
+        ruby.ary_from_iter(langs.iter().map(|&lang| Lang(lang)))
+    }
+
     fn code(&self) -> &str {
         self.0.code()
     }
@@ -112,6 +117,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     module.define_singleton_method("detect_script", function!(detect_script, 1))?;
 
     let lang = module.define_class("Lang", ruby.class_object())?;
+    lang.define_singleton_method("all", function!(Lang::all, 0))?;
     lang.define_method("code", method!(Lang::code, 0))?;
     lang.define_method("name", method!(Lang::name, 0))?;
     lang.define_method("eng_name", method!(Lang::eng_name, 0))?;
