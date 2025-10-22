@@ -62,4 +62,10 @@ class TestWhatlang < Test::Unit::TestCase
   def test_numeric
     assert_nil Whatlang.detect(1234)
   end
+
+  def test_lang_all
+    all_langs = Whatlang::Lang.all
+    assert_equal 70, all_langs.length
+    assert_all(all_langs) {|lang| lang.instance_of? Whatlang::Lang}
+  end
 end
