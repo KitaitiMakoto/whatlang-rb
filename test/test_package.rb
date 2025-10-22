@@ -1,4 +1,5 @@
 require "test/unit"
+require "test/unit/notify"
 require 'tempfile'
 require 'tmpdir'
 require 'shellwords'

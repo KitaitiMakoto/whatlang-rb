@@ -1,4 +1,5 @@
 require "test/unit"
+require "test/unit/notify"
 require "whatlang"
 
 class TestWhatlang < Test::Unit::TestCase
