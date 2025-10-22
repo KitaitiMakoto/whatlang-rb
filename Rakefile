@@ -18,7 +18,8 @@ end
 
 SO_NAME = "#{GEMSPEC.name}.#{RbConfig::CONFIG["DLEXT"]}"
 SO_PATH = File.join("lib", SO_NAME)
-file SO_PATH => CARGO_LOCK do
+SRC = FileList["ext/src/**/*.rs"]
+file SO_PATH => [CARGO_LOCK] + SRC do
   results = Rake.verbose == true ? $stdout : []
   Gem::Ext::CargoBuilder.new.build MANIFEST, ".", results, [], "lib", File.expand_path("ext")
 end
