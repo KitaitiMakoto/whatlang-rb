@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rake/clean"
 require "rubygems/ext"
 require "rubygems/tasks"
@@ -9,25 +7,33 @@ require "shellwords"
 
 task default: :test
 
-Gem::Tasks.new
-YARD::Rake::YardocTask.new
+GEMSPEC = Gem::Specification.load("whatlang.gemspec")
+MANIFEST = GEMSPEC.extensions.first
 
 CARGO_LOCK = "ext/Cargo.lock"
-file CARGO_LOCK => "ext/Cargo.toml" do |t|
-  system "cargo", "update", "--manifest-path", t.source, `cargo pkgid --manifest-path=#{t.source.shellescape}`.chomp, exception: true
+file CARGO_LOCK => MANIFEST do |t|
+  pkgid = `cargo pkgid --manifest-path=#{t.source.shellescape}`.chomp
+  system "cargo", "update", "--manifest-path", t.source, pkgid, exception: true
 end
 
-EXTENSION = "lib/whatlang.#{RbConfig::CONFIG["DLEXT"]}"
-file EXTENSION => CARGO_LOCK do
+SO_NAME = "#{GEMSPEC.name}.#{RbConfig::CONFIG["DLEXT"]}"
+SO_PATH = File.join("lib", SO_NAME)
+file SO_PATH => CARGO_LOCK do
   results = Rake.verbose == true ? $stdout : []
-  Gem::Ext::CargoBuilder.new.build "ext/Cargo.toml", ".", results, [], "lib", File.expand_path("ext")
+  Gem::Ext::CargoBuilder.new.build MANIFEST, ".", results, [], "lib", File.expand_path("ext")
 end
-CLEAN.include "whatlang.bundle"
-CLOBBER.include EXTENSION
+CLEAN.include SO_NAME
+CLOBBER.include SO_PATH
+
+Gem::Tasks.new
+task build: CARGO_LOCK
+CLOBBER.include("pkg/#{GEMSPEC.file_name}")
 
 Rake::TestTask.new
-task test: EXTENSION
+task test: SO_PATH
 
+YARD::Rake::YardocTask.new
+desc "Generate Ruby and Rust documentation"
 task doc: :yard do
-  system "cargo", "doc", "--manifest-path", "ext/Cargo.toml", exception: true
+  system "cargo", "doc", "--manifest-path", MANIFEST, exception: true
 end
