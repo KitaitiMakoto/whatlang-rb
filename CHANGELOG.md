@@ -1,7 +1,9 @@
 0.2.0
 =====
 
+* Implement all lib code in Rust
 * Add rb-sys/stable-api-compiled-fallback for some environment
+* Implement `Whatlang::Lang.all`
 
 0.1.9
 =====
