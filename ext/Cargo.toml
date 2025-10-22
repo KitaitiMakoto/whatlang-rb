@@ -1,6 +1,6 @@
 [package]
 name = "whatlang"
-version = "0.1.9"
+version = "0.2.0"
 authors = ["Kitaiti Makoto <KitaitiMakoto@gmail.com>"]
 edition = "2024"
 publish = false

@@ -306,7 +306,7 @@ checksum = "462eeb75aeb73aea900253ce739c8e18a67423fadf006037cd3ff27e82748a06"
 
 [[package]]
 name = "whatlang"
-version = "0.1.9"
+version = "0.2.0"
 dependencies = [
  "magnus",
  "rb-sys",
