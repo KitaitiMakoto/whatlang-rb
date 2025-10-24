@@ -21,7 +21,12 @@ SO_PATH = File.join("lib", SO_NAME)
 SRC = FileList["ext/src/**/*.rs"]
 file SO_PATH => [CARGO_LOCK] + SRC do
   results = Rake.verbose == true ? $stdout : []
-  Gem::Ext::CargoBuilder.new.build MANIFEST, ".", results, [], "lib", File.expand_path("ext")
+  begin
+    Gem::Ext::CargoBuilder.new.build MANIFEST, ".", results, [], "lib", File.expand_path("ext")
+  rescue => error
+    $stderr.puts results unless Rake.verbose == true
+    fail
+  end
 end
 CLEAN.include SO_NAME
 CLOBBER.include SO_PATH
