@@ -16,10 +16,10 @@ file CARGO_LOCK => MANIFEST do |t|
   system "cargo", "update", "--manifest-path", t.source, pkgid, exception: true
 end
 
-SO_NAME = "#{GEMSPEC.name}.#{RbConfig::CONFIG["DLEXT"]}"
-SO_PATH = File.join("lib", SO_NAME)
+DL_NAME = "#{GEMSPEC.name}.#{RbConfig::CONFIG["DLEXT"]}"
+DL_PATH = File.join("lib", DL_NAME)
 SRC = FileList["ext/src/**/*.rs"]
-file SO_PATH => [CARGO_LOCK] + SRC do
+file DL_PATH => [CARGO_LOCK] + SRC do
   results = Rake.verbose == true ? $stdout : []
   begin
     Gem::Ext::CargoBuilder.new.build MANIFEST, ".", results, [], "lib", File.expand_path("ext")
@@ -28,15 +28,15 @@ file SO_PATH => [CARGO_LOCK] + SRC do
     fail
   end
 end
-CLEAN.include SO_NAME
-CLOBBER.include SO_PATH
+CLEAN.include DL_NAME
+CLOBBER.include DL_PATH
 
 Gem::Tasks.new
 task build: CARGO_LOCK
 CLOBBER.include("pkg/#{GEMSPEC.file_name}")
 
 Rake::TestTask.new
-task test: SO_PATH
+task test: DL_PATH
 
 YARD::Rake::YardocTask.new
 desc "Generate Ruby and Rust documentation"
