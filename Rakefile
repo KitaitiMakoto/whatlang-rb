@@ -13,7 +13,7 @@ GEMSPEC = Gem::Specification.load("whatlang.gemspec")
 cargo "whatlang"
 
 Gem::Tasks.new
-task build: "cargo:validate"
+task build: "cargo:check"
 CLOBBER.include("pkg/#{GEMSPEC.file_name}")
 
 Rake::TestTask.new
