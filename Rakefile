@@ -14,8 +14,7 @@ Gem::Tasks.new
 task build: "cargo:check"
 CLOBBER.include("pkg/#{GEMSPEC.file_name}")
 
-Rake::TestTask.new
-task test: :cargo
+Rake::TestTask.new test: :cargo
 
 YARD::Rake::YardocTask.new
 desc "Generate Ruby and Rust documentation"
