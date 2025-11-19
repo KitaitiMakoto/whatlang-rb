@@ -8,5 +8,7 @@
 /tmp/
 Gemfile.lock
 /lib/whatlang.bundle
-/whatlang.bundle
+/ext/whatlang.bundle
 /ext/target/
+/ext/release/
+/ext/.rustc_info.json
