@@ -1,9 +1,7 @@
 require "rake/clean"
-require "rubygems/ext"
 require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
-require "shellwords"
 require "kar/dsl"
 
 task default: :test
