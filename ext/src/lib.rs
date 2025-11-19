@@ -57,21 +57,18 @@ fn detect(ruby: &Ruby, args: &[Value]) -> Result<Option<Info>, Error> {
         &[],
         &["allowlist", "denylist"],
     )?;
-    let (allowlist, denylist) = kw_args.optional;
-    if allowlist.is_some() && denylist.is_some() {
-        return Err(Error::new(
-            ruby.exception_arg_error(),
-            "Couldn't specify `allowlist' and `denylist' at a time. Choose one.",
-        ));
-    }
 
     let text = args.required.0.to_r_string()?.to_string()?;
-    Ok(if let Some(allowlist) = allowlist {
-        detect_with_allowlist(text, allowlist)
-    } else if let Some(denylist) = denylist {
-        detect_with_denylist(text, denylist)
-    } else {
-        detect_without_options(text)
+    Ok(match kw_args.optional {
+        (Some(_allowlist), Some(_denylist)) => {
+            return Err(Error::new(
+                ruby.exception_arg_error(),
+                "Couldn't specify `allowlist' and `denylist' at a time. Choose one.",
+            ));
+        }
+        (Some(allowlist), None) => detect_with_allowlist(text, allowlist),
+        (None, Some(denylist)) => detect_with_denylist(text, denylist),
+        (None, None) => detect_without_options(text),
     })
 }
 
