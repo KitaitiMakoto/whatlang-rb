@@ -6,13 +6,11 @@ require "kar/dsl"
 
 task default: :test
 
-GEMSPEC = Gem::Specification.load("whatlang.gemspec")
-
 cargo "whatlang"
 
-Gem::Tasks.new
+gem_tasks = Gem::Tasks.new
 task build: "cargo:check"
-CLOBBER.include("pkg/#{GEMSPEC.file_name}")
+CLOBBER.include(gem_tasks.build.gem.project.builds["whatlang"][:gem])
 
 Rake::TestTask.new test: :cargo
 
