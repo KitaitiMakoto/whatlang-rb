@@ -37,9 +37,9 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "2.11.0"
+version = "2.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "843867be96c8daad0d758b57df9392b6d8d271134fce549de6ce169ff98a92af"
+checksum = "c4512299f36f043ab09a583e57bceb5a5aab7a73db1805848e8fef3c9e8c78b3"
 
 [[package]]
 name = "cexpr"
@@ -119,9 +119,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.183"
+version = "0.2.186"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5b646652bf6661599e1da8901b3b9522896f01e736bad5f723fe7a3a27f899d"
+checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "libloading"
@@ -198,18 +198,18 @@ dependencies = [
 
 [[package]]
 name = "rb-sys"
-version = "0.9.125"
+version = "0.9.127"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85b37650fabd8ba515910a0dc089dcb6348eb3c35fbf91698cb226435be2babc"
+checksum = "d7d7c9560fe42dcffa576941394075f18a17dce89fcf718a2fa90b7dc2134d12"
 dependencies = [
  "rb-sys-build",
 ]
 
 [[package]]
 name = "rb-sys-build"
-version = "0.9.125"
+version = "0.9.127"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c73b806faa66006e491458b48a78725621c1ac5a2a6efe2614c90711a7780b80"
+checksum = "f1688e8f32967ba48c89e4dfa283b57f901075f542fc7ee9c3d7c5f9091ca1d9"
 dependencies = [
  "bindgen",
  "lazy_static",
