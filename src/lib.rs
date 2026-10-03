@@ -1,4 +1,8 @@
-use rutie::{AnyException, AnyObject, Array, Boolean, Class, Exception, Float, Module, NilClass, Object, RString, VM, class, methods, module, rutie_callback, types::Argc, util::parse_arguments, wrappable_struct};
+use rutie::{
+    AnyException, AnyObject, Array, Boolean, Class, Exception, Float, Module, NilClass, Object,
+    RString, VM, class, methods, module, rutie_callback, types::Argc, util::parse_arguments,
+    wrappable_struct,
+};
 use whatlang_rs as wl;
 
 module!(Whatlang);
@@ -13,7 +17,9 @@ fn get_lang(rtself: &Lang) -> wl::Lang {
 
 impl Lang {
     fn new(lang: wl::Lang) -> AnyObject {
-        Module::from_existing("Whatlang").get_nested_class("Lang").wrap_data(lang, &*LANG_WRAPPER)
+        Module::from_existing("Whatlang")
+            .get_nested_class("Lang")
+            .wrap_data(lang, &*LANG_WRAPPER)
     }
 }
 
@@ -24,7 +30,7 @@ methods!(
     fn wl_lang_all() -> Array {
         let langs = wl::Lang::all();
         let mut ary = Array::with_capacity(langs.len());
-        for lang in langs {   
+        for lang in langs {
             ary.push(Lang::new(*lang));
         }
         ary
@@ -49,7 +55,9 @@ class!(Info);
 
 impl Info {
     fn new(info: wl::Info) -> AnyObject {
-        Module::from_existing("Whatlang").get_nested_class("Info").wrap_data(info, &*INFO_WRAPPER)
+        Module::from_existing("Whatlang")
+            .get_nested_class("Info")
+            .wrap_data(info, &*INFO_WRAPPER)
     }
 }
 
@@ -62,7 +70,12 @@ methods!(
     }
 
     fn wl_info_script() -> RString {
-        rtself.get_data(&*INFO_WRAPPER).script().name().to_owned().into()
+        rtself
+            .get_data(&*INFO_WRAPPER)
+            .script()
+            .name()
+            .to_owned()
+            .into()
     }
 
     fn wl_info_confidence() -> Float {
@@ -157,7 +170,9 @@ fn rstring(s: Result<RString, AnyException>) -> RString {
 }
 
 fn lang_list(list: Array) -> Vec<wl::Lang> {
-    list.into_iter().filter_map(|s| wl::Lang::from_code(s.as_string().to_str())).collect()
+    list.into_iter()
+        .filter_map(|s| wl::Lang::from_code(s.as_string().to_str()))
+        .collect()
 }
 
 fn option_to_nillable(nillable: Option<AnyObject>) -> AnyObject {
