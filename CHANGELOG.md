@@ -1,3 +1,8 @@
+0.2.1
+=====
+
+* Switch Rust glue library from [Magnus][] to [Rutie][]
+
 0.2.0
 =====
 
