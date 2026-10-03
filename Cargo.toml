@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 lazy_static = "1.5.1"
-rutie = "0.14.0"
+rutie = "0.14"
 whatlang-rs = { package = "whatlang", version = "0.18.0", registry = "crates-io" }
 
 [lib]

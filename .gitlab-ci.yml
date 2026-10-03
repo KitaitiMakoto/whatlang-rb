@@ -1,6 +1,5 @@
-default:
-  image: ruby:4.0.0
-
+test:
+  image: ruby:$RUBY_VERSION
   before_script:
     - apt-get update && apt-get install -y clang
     - curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -8,9 +7,10 @@ default:
     - gem update --system
     - gem install bundler
     - bundle install
-
-test:
   variables:
     RB_SYS_FORCE_INSTALL_RUST_TOOLCHAIN: 'true'
   script:
     - source "$HOME/.cargo/env" && rake test
+  parallel:
+    matrix:
+      - RUBY_VERSION: ["3.2", "3.3", "3.4", "4.0"]

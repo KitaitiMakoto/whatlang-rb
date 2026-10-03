@@ -1,5 +1,19 @@
 require "rutie/rake_task"
 
-Rutie::RakeTask.new
+RUBY_TO_RUTIE = {
+  "3.2" => "0.13",
+  "3.3" => "0.13",
+  "3.4" => "0.13",
+  "4.0" => "0.14"
+}
 
 task default: "rutie:build"
+
+ruby_version = [RbConfig::CONFIG["MAJOR"], RbConfig::CONFIG["MINOR"]].join(".")
+rutie_version = RUBY_TO_RUTIE[ruby_version]
+unless rutie_version
+  abort "Unsupported Ruby version. Available versions are: #{RUBY_TO_RUTIE.keys.join(', ')}"
+end
+sh "cargo", "add", "rutie@#{rutie_version}"
+
+Rutie::RakeTask.new

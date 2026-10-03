@@ -45,9 +45,9 @@ checksum = "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2"
 
 [[package]]
 name = "rutie"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "327f26d78535b5b83b099091dc544310442591960451eefe2ca332c4bb7f1e66"
+checksum = "2f2bb20b12c4e3f307de8021dbf6f2b7396dbc203c1c9a2beeabd32aa9522e5e"
 dependencies = [
  "lazy_static",
  "libc",

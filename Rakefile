@@ -2,10 +2,10 @@ require "rake/clean"
 require "rubygems/tasks"
 require "rake/testtask"
 require "yard"
+require "rutie/rake_task"
 require "kar/dsl"
 
 TARGET = "target/release/libwhatlang.#{RbConfig::CONFIG['SOEXT']}"
-CLOBBER.include TARGET
 
 task default: :test
 
@@ -18,6 +18,9 @@ file TARGET do |t|
 end
 
 Rake::TestTask.new test: TARGET
+Rutie::RakeTask.new
+
+task clean: "rutie:clean"
 
 YARD::Rake::YardocTask.new
 desc "Generate Ruby and Rust documentation"
