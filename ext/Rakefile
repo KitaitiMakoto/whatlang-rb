@@ -1,3 +1,5 @@
-task :default do |t|
-  sh "cargo", "build", "--release"
-end
+require "rutie/rake_task"
+
+Rutie::RakeTask.new
+
+task default: "rutie:build"

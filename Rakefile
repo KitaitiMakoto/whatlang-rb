@@ -5,6 +5,7 @@ require "yard"
 require "kar/dsl"
 
 TARGET = "target/release/libwhatlang.#{RbConfig::CONFIG['SOEXT']}"
+CLOBBER.include TARGET
 
 task default: :test
 
