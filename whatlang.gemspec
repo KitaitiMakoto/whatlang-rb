@@ -2,7 +2,7 @@ require "json"
 
 Gem::Specification.new do |spec|
   spec.name          = "whatlang"
-  spec.version       = JSON.parse(`cargo metadata --no-deps --format-version=1 --manifest-path=ext/Cargo.toml`)["packages"][0]["version"]
+  spec.version       = JSON.parse(`cargo metadata --no-deps --format-version=1`)["packages"][0]["version"]
   spec.license       = "Ruby"
   spec.authors       = ["Kitaiti Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
@@ -18,7 +18,9 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0")
   end
-  spec.extensions = ["ext/Cargo.toml"]
+  spec.extensions = ["ext/Rakefile"]
+
+  spec.add_runtime_dependency "rutie"
 
   spec.add_development_dependency "test-unit"
   spec.add_development_dependency "test-unit-notify"

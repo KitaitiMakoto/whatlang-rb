@@ -43,6 +43,8 @@ class TestWhatlang < Test::Unit::TestCase
   def test_detect_script
     text = "Благодаря Эсперанто вы обрётете друзей по всему миру!"
     assert_equal "Cyrillic", Whatlang.detect_script(text)
+
+    assert_nil Whatlang.detect_script("")
   end
 
   def test_detect_empty_string

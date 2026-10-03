@@ -6,9 +6,9 @@ edition = "2024"
 publish = false
 
 [dependencies]
-magnus = "0.8"
+lazy_static = "1.5.1"
+rutie = "0.14.0"
 whatlang-rs = { package = "whatlang", version = "0.18.0", registry = "crates-io" }
-rb-sys = { version = "*", features = ["stable-api-compiled-fallback"] }
 
 [lib]
 crate-type = ["cdylib"]

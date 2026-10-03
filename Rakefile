@@ -4,15 +4,19 @@ require "rake/testtask"
 require "yard"
 require "kar/dsl"
 
+TARGET = "target/release/libwhatlang.#{RbConfig::CONFIG['SOEXT']}"
+
 task default: :test
 
-cargo "whatlang"
-
 gem_tasks = Gem::Tasks.new
-task build: "cargo:check"
-CLOBBER.include(gem_tasks.build.gem.project.builds["whatlang"][:gem])
 
-Rake::TestTask.new test: :cargo
+file TARGET do |t|
+  chdir "ext" do
+    sh "rake"
+  end
+end
+
+Rake::TestTask.new test: TARGET
 
 YARD::Rake::YardocTask.new
 desc "Generate Ruby and Rust documentation"

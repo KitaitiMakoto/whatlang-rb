@@ -12,3 +12,4 @@ Gemfile.lock
 /ext/target/
 /ext/release/
 /ext/.rustc_info.json
+target/
