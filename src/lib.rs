@@ -191,6 +191,7 @@ pub extern "C" fn Init_whatlang() {
         whatlang.def_self("detect_script", wl_detect_script);
 
         whatlang.define_nested_class("Lang", None).define(|lang| {
+            lang.undef_alloc_func();
             lang.def_self("all", wl_lang_all);
             lang.def("code", wl_lang_code);
             lang.def("name", wl_lang_name);
@@ -198,6 +199,7 @@ pub extern "C" fn Init_whatlang() {
         });
 
         whatlang.define_nested_class("Info", None).define(|info| {
+            info.undef_alloc_func();
             info.def("lang", wl_info_lang);
             info.def("script", wl_info_script);
             info.def("confidence", wl_info_confidence);
