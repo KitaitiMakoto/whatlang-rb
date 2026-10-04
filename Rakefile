@@ -6,12 +6,13 @@ require "rutie/rake_task"
 require "kar/dsl"
 
 TARGET = "target/release/libwhatlang.#{RbConfig::CONFIG['SOEXT']}"
+RUST_SRC = FileList["src/**/*.rs"]
 
 task default: :test
 
 gem_tasks = Gem::Tasks.new
 
-file TARGET do |t|
+file TARGET => RUST_SRC + ["Cargo.toml", "Cargo.lock", "ext/Rakefile"] do |t|
   chdir "ext" do
     sh "rake"
   end
