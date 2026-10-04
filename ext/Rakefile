@@ -9,11 +9,14 @@ RUBY_TO_RUTIE = {
 
 task default: "rutie:build"
 
-ruby_version = [RbConfig::CONFIG["MAJOR"], RbConfig::CONFIG["MINOR"]].join(".")
-rutie_version = RUBY_TO_RUTIE[ruby_version]
-unless rutie_version
-  abort "Unsupported Ruby version. Available versions are: #{RUBY_TO_RUTIE.keys.join(', ')}"
-end
-sh "cargo", "add", "rutie@#{rutie_version}"
-
 Rutie::RakeTask.new
+task "rutie:build" => :rutie_version
+
+task :rutie_version do |t|
+  ruby_version = RbConfig::CONFIG.fetch_values("MAJOR", "MINOR").join(".")
+  rutie_version = RUBY_TO_RUTIE[ruby_version]
+  unless rutie_version
+    fail "Unsupported Ruby version. Available versions are: #{RUBY_TO_RUTIE.keys.join(', ')}"
+  end
+  sh "cargo", "add", "rutie@#{rutie_version}"
+end
